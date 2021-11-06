@@ -1,18 +1,19 @@
 {
-  "CONTRACT_ADDRESS": "0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
-  "SCAN_LINK": "https://polygonscan.com/token/0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
+  "CONTRACT_ADDRESS": "0x7Ab5B0C287708a480c21393BAb95bb6b7D0c68B5",
+  "SCAN_LINK": "https://polygonscan.com/token/0x7Ab5B0C287708a480c21393BAb95bb6b7D0c68B5",
+  "WOTLINK":"https://www.worldoftarothiya.com",
   "NETWORK": {
     "NAME": "Polygon",
-    "SYMBOL": "Matic",
+    "SYMBOL": "MATIC",
     "ID": 137
   },
-  "NFT_NAME": "Nerdy Coder Clones",
-  "SYMBOL": "NCC",
-  "MAX_SUPPLY": 1000,
-  "WEI_COST": 75000000000000000,
-  "DISPLAY_COST": 0.075,
+  "NFT_NAME": "Nalakai",
+  "SYMBOL": "NKAI",
+  "MAX_SUPPLY": 129,
+  "WEI_COST": 15000000000000000000,
+  "DISPLAY_COST": 15,
   "GAS_LIMIT": 285000,
-  "MARKETPLACE": "Opeansea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/nerdy-coder-clones",
-  "SHOW_BACKGROUND": true
+  "MARKETPLACE": "Opensea",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/nalakai",
+  "SHOW_BACKGROUND": false
 }

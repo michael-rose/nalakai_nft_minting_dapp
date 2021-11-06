@@ -130,7 +130,7 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .mint(blockchain.account, mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -150,22 +150,6 @@ function App() {
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
-  };
-
-  const decrementMintAmount = () => {
-    let newMintAmount = mintAmount - 1;
-    if (newMintAmount < 1) {
-      newMintAmount = 1;
-    }
-    setMintAmount(newMintAmount);
-  };
-
-  const incrementMintAmount = () => {
-    let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 10) {
-      newMintAmount = 10;
-    }
-    setMintAmount(newMintAmount);
   };
 
   const getData = () => {
@@ -201,7 +185,6 @@ function App() {
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
@@ -223,12 +206,22 @@ function App() {
             <s.TextTitle
               style={{
                 textAlign: "center",
-                fontSize: 50,
+                fontSize: 60,
                 fontWeight: "bold",
                 color: "var(--accent-text)",
               }}
             >
-              {data.totalSupply} / {CONFIG.MAX_SUPPLY}
+              Nalakai - Women of the Forest
+            </s.TextTitle>
+            <s.TextTitle
+              style={{
+                textAlign: "center",
+                fontSize: 40,
+                fontWeight: "bold",
+                color: "var(--accent-text)",
+              }}
+            >
+              {data.totalSupply == 0 ? "Connect your wallet to view the supply details" : data.totalSupply + "/" + CONFIG.MAX_SUPPLY }
             </s.TextTitle>
             <s.TextDescription
               style={{
@@ -264,13 +257,13 @@ function App() {
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  {CONFIG.NETWORK.SYMBOL}
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  Excluding gas fees
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -319,37 +312,6 @@ function App() {
                       {feedback}
                     </s.TextDescription>
                     <s.SpacerMedium />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledRoundButton
-                        style={{ lineHeight: 0.4 }}
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          decrementMintAmount();
-                        }}
-                      >
-                        -
-                      </StyledRoundButton>
-                      <s.SpacerMedium />
-                      <s.TextDescription
-                        style={{
-                          textAlign: "center",
-                          color: "var(--accent-text)",
-                        }}
-                      >
-                        {mintAmount}
-                      </s.TextDescription>
-                      <s.SpacerMedium />
-                      <StyledRoundButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          incrementMintAmount();
-                        }}
-                      >
-                        +
-                      </StyledRoundButton>
-                    </s.Container>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
@@ -368,6 +330,10 @@ function App() {
               </>
             )}
             <s.SpacerMedium />
+            <s.SpacerMedium />
+          <StyledLink target={"_blank"} href={CONFIG.WOTLINK}>
+                worldoftarothiya.com
+              </StyledLink>
           </s.Container>
           <s.SpacerLarge />
           <s.Container flex={1} jc={"center"} ai={"center"}>
